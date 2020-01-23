@@ -5,6 +5,7 @@ from pymongo import MongoClient
 import os.path
 from bson import json_util
 
+# Conexão para o MLab 
 DB_NAME = "backupneurobots"
 DB_HOST = "ds135486.mlab.com"
 DB_PORT = 35486
@@ -14,17 +15,19 @@ DB_PASS = "neurob0ts@@"
 connection = MongoClient(DB_HOST, DB_PORT)
 db = connection[DB_NAME]
 db.authenticate(DB_USER, DB_PASS)
+
+# Parêmtros locais
 path_mongoexport = r'C:\Program Files\mongoDB\Server\4.0\bin\mongoexport'
 path_mongoimport = r'C:\Program Files\mongoDB\Server\4.0\bin\mongoimport'
 path_target = r'c:\backup\mongosql.json'
-collection = 'cliente_collection'
-db = 'test'
+collection_local = 'cliente_collection'
+db_local = 'test'
 
 
 def backup():
     # Backup do mongo para arquivo
-    p = subprocess.Popen([path_mongoexport, "--db", db, "--collection",
-                      collection, "--pretty", "--out", path_target], stdout=subprocess.PIPE, shell=True)
+    p = subprocess.Popen([path_mongoexport, "--db", db_local, "--collection",
+                      collection_local, "--pretty", "--out", path_target], stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate()  
 
     # Aguardar o comando ser concluído
