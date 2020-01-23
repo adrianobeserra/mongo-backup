@@ -14,7 +14,6 @@ DB_PASS = "neurob0ts@@"
 connection = MongoClient(DB_HOST, DB_PORT)
 db = connection[DB_NAME]
 db.authenticate(DB_USER, DB_PASS)
-collection_backup = db['backup']
 path_mongoexport = r'C:\Program Files\mongoDB\Server\4.0\bin\mongoexport'
 path_mongoimport = r'C:\Program Files\mongoDB\Server\4.0\bin\mongoimport'
 path_target = r'c:\backup\mongosql.json'
